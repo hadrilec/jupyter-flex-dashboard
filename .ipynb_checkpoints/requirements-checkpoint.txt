@@ -1,0 +1,8 @@
+jupyter-flex
+nbformat
+nbconvert
+IPython
+plotly
+vega_datasets
+altair
+altair_viewer

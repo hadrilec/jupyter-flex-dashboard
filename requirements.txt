@@ -1,0 +1,5 @@
+jupyter-flex
+nbformat
+nbconvert
+IPython
+plotly
