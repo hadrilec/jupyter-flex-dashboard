@@ -12,7 +12,7 @@ pip install -r requirements.txt
 python make_flex_notebook.py
 
 # make flex dashboard html report
-jupyter nbconvert --to flex REPORT_SUMMARY.ipynb 
+jupyter nbconvert --to flex REPORT_SUMMARY.ipynb --execute
 ```
 
 
