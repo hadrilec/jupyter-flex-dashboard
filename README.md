@@ -8,11 +8,12 @@ After compilation, an html flex dashboard report is created.
 # download librairies
 pip install -r requirements.txt
 
-# make flex notebook
+# make flex notebook + compile the html report
 python make_flex_notebook.py
 
+# os system command already called in the python script and added here for information
 # make flex dashboard html report
-jupyter nbconvert --to flex REPORT_SUMMARY.ipynb --execute
+# jupyter nbconvert --to flex REPORT_SUMMARY.ipynb --execute
 ```
 
 
