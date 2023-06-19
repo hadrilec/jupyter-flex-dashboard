@@ -3,3 +3,5 @@ nbformat
 nbconvert
 IPython
 plotly
+pandas
+panel
