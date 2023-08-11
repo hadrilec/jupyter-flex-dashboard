@@ -41,20 +41,29 @@ os.chdir(folder)
 
 """
 nb['cells'] += [nbf.v4.new_code_cell(code)]
-nb['cells'][len(nb['cells'])-1]['metadata'] = {"tags": ["source"]}
+nb['cells'][-1]['metadata'] = {"tags": ["source"]}
 
-text = """\
-[![](pict.png)](https://www.wikipedia.org/)
+#text = """\
+#[![](pict.png)](https://www.wikipedia.org/)
+
+#"""
+#nb['cells'] += [nbf.v4.new_markdown_cell(text)]
+#nb['cells'][len(nb['cells'])-1]['metadata'] = {"tags": ["body"]}
+
+code = """\
+from PIL import Image
+Image.open('pict.png').convert("RGB")
 
 """
-nb['cells'] += [nbf.v4.new_markdown_cell(text)]
-nb['cells'][len(nb['cells'])-1]['metadata'] = {"tags": ["body"]}
+nb['cells'] += [nbf.v4.new_code_cell(code)]
+nb['cells'][-1]['metadata'] = {"tags": ["body"]}
+
 
 text = """\
 Ratio = $\sum{A_{i,t}}{i}$
 """
 nb['cells'] += [nbf.v4.new_markdown_cell(text)]
-nb['cells'][len(nb['cells'])-1]['metadata'] = {"tags": ["body"]}
+nb['cells'][-1]['metadata'] = {"tags": ["body"]}
 
 
 #
@@ -84,13 +93,13 @@ fig1 = px.pie(df, values='pop', names='country', title='Population of European c
 
 """
 nb['cells'] += [nbf.v4.new_code_cell(code)]
-nb['cells'][len(nb['cells'])-1]['metadata'] = {"tags": ["source"]}
+nb['cells'][-1]['metadata'] = {"tags": ["source"]}
 
 code = """\
 fig1.show()
 """
 nb['cells'] += [nbf.v4.new_code_cell(code)]
-nb['cells'][len(nb['cells'])-1]['metadata'] = {"tags": ["body"]}
+nb['cells'][-1]['metadata'] = {"tags": ["body"]}
 
 code = """\
 import plotly.graph_objects as go
@@ -101,7 +110,7 @@ fig2 = go.Figure(
 
 """
 nb['cells'] += [nbf.v4.new_code_cell(code)]
-nb['cells'][len(nb['cells'])-1]['metadata'] = {"tags": ["source"]}
+nb['cells'][-1]['metadata'] = {"tags": ["source"]}
 
 
 text = """\
@@ -118,13 +127,13 @@ code = """\
 
 """
 nb['cells'] += [nbf.v4.new_code_cell(code)]
-nb['cells'][len(nb['cells'])-1]['metadata'] = {"tags": ["source"]}
+nb['cells'][-1]['metadata'] = {"tags": ["source"]}
 
 code = """\
 fig2.show()
 """
 nb['cells'] += [nbf.v4.new_code_cell(code)]
-nb['cells'][len(nb['cells'])-1]['metadata'] = {"tags": ["body"]}
+nb['cells'][-1]['metadata'] = {"tags": ["body"]}
 
 #
 # Second page
@@ -139,13 +148,13 @@ text = """\
 ## Col1
 """
 nb['cells'] += [nbf.v4.new_markdown_cell(text)]
-nb['cells'][len(nb['cells'])-1]['metadata'] = {"tags": ["tabs"]}
+nb['cells'][-1]['metadata'] = {"tags": ["tabs"]}
 
 code = """\
 
 """
 nb['cells'] += [nbf.v4.new_code_cell(code)]
-nb['cells'][len(nb['cells'])-1]['metadata'] = {"tags": ["source"]}
+nb['cells'][-1]['metadata'] = {"tags": ["source"]}
 
 
 text = """\
@@ -158,7 +167,7 @@ code = """\
 fig2.show()
 """
 nb['cells'] += [nbf.v4.new_code_cell(code)]
-nb['cells'][len(nb['cells'])-1]['metadata'] = {"tags": ["body"]}
+nb['cells'][-1]['metadata'] = {"tags": ["body"]}
 
 text = """\
 ### tab2
@@ -169,7 +178,7 @@ code = """\
 fig1.show()
 """
 nb['cells'] += [nbf.v4.new_code_cell(code)]
-nb['cells'][len(nb['cells'])-1]['metadata'] = {"tags": ["body"]}
+nb['cells'][-1]['metadata'] = {"tags": ["body"]}
 
 
 text = """\
@@ -200,7 +209,7 @@ df_pane
 
 """
 nb['cells'] += [nbf.v4.new_code_cell(code)]
-nb['cells'][len(nb['cells'])-1]['metadata'] = {"tags": ["body"]}
+nb['cells'][-1]['metadata'] = {"tags": ["body"]}
 
 
 import os

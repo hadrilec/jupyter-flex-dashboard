@@ -3,6 +3,6 @@ nbformat
 nbconvert
 IPython
 plotly
-vega_datasets
-altair
-altair_viewer
+pandas
+panel
+PIL

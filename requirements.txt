@@ -5,3 +5,4 @@ IPython
 plotly
 pandas
 panel
+PIL
