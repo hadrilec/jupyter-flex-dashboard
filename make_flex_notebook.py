@@ -67,6 +67,110 @@ nb['cells'][-1]['metadata'] = {"tags": ["body"]}
 
 
 #
+# Page 0 : download button
+#
+
+text = """\
+# page 0
+"""
+nb['cells'] += [nbf.v4.new_markdown_cell(text)]
+
+text = """\
+## Col1
+"""
+nb['cells'] += [nbf.v4.new_markdown_cell(text)]
+nb['cells'][-1]['metadata'] = {"tags": ["tabs"]}
+
+
+text = """\
+### tab 1
+"""
+nb['cells'] += [nbf.v4.new_markdown_cell(text)]
+
+
+code = """\
+from bokeh.sampledata.autompg import autompg
+import panel as pn
+from io import StringIO
+pn.extension()
+
+sio = StringIO()
+autompg.to_csv(sio)
+sio.seek(0)
+
+pn.widgets.FileDownload(sio, embed=True, filename='autompg.csv')
+
+years_options = list(autompg.yr.unique())
+years = pn.widgets.MultiChoice(
+    name='Years', options=years_options, value=[years_options[0]], margin=(0, 20, 0, 0)
+)
+mpg = pn.widgets.RangeSlider(
+    name='Mile per Gallon', start=autompg.mpg.min(), end=autompg.mpg.max()
+)
+
+def filtered_mpg(yrs, mpg):
+    df = autompg
+    if years.value:
+        df = autompg[autompg.yr.isin(yrs)]
+    return df[(df.mpg >= mpg[0]) & (df.mpg <= mpg[1])]
+
+def filtered_file(yr, mpg):
+    df = filtered_mpg(yr, mpg)
+    sio = StringIO()
+    df.to_csv(sio)
+    sio.seek(0)
+    return sio
+
+#fd = pn.widgets.FileDownload(
+#    callback=pn.bind(filtered_file, years, mpg), filename='filtered_autompg.csv'
+#)
+
+#pn.Column(
+#    pn.Row(years, mpg),
+#    fd,
+#    pn.panel(pn.bind(filtered_mpg, years, mpg), width=600),
+#    width=600
+#)
+"""
+
+code = """\
+import plotly.express as px
+import pandas as pd
+
+data_canada = px.data.gapminder().query("country == 'Canada'")
+bar_chart = px.bar(data_canada, x='year', y='pop')
+
+df_w_exchange = pd.DataFrame({'1': [1, 2]})
+
+"""
+nb['cells'] += [nbf.v4.new_code_cell(code)]
+nb['cells'][len(nb['cells'])-1]['metadata'] = {"tags": ["source"]}
+
+ 
+
+code = """\
+import panel as pn
+from io import StringIO
+pn.extension('plotly')
+
+bar_chart_data = StringIO()
+df_w_exchange.to_csv(bar_chart_data)
+bar_chart_data.seek(0)
+button = pn.widgets.FileDownload(bar_chart_data, embed=True, auto =False, filename='Download_underlying_data.csv')
+
+bar_chart.update_layout(
+    autosize=False,
+    width=1200,
+    height=666)
+column = pn.Column(bar_chart, button)
+column
+"""
+
+nb['cells'] += [nbf.v4.new_code_cell(code)]
+nb['cells'][-1]['metadata'] = {"tags": ["body"]}
+
+
+#
 # First Page
 #
 
@@ -149,12 +253,6 @@ text = """\
 """
 nb['cells'] += [nbf.v4.new_markdown_cell(text)]
 nb['cells'][-1]['metadata'] = {"tags": ["tabs"]}
-
-code = """\
-
-"""
-nb['cells'] += [nbf.v4.new_code_cell(code)]
-nb['cells'][-1]['metadata'] = {"tags": ["source"]}
 
 
 text = """\
